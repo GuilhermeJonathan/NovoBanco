@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NovoBanco.Api</name>
+    </assembly>
+    <members>
+        <member name="T:NovoBanco.Api.v1.Controllers.BancoController">
+            <summary>
+            BancoController
+            </summary>
+        </member>
+        <member name="M:NovoBanco.Api.v1.Controllers.BancoController.Get">
+            <summary>
+            Método Responsável para retornar todos os bancos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NovoBanco.Api.v1.Controllers.ContaBancariaController">
+            <summary>
+            ContaBancariaController
+            </summary>
+        </member>
+        <member name="M:NovoBanco.Api.v1.Controllers.ContaBancariaController.Get">
+            <summary>
+            /Método Responsável para retornar todas as contas
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
