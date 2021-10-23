@@ -1,14 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NovoBanco.Dominio.Entidades;
 using NovoBanco.Dominio.Repositories;
 using NovoBanco.Infraestrutura.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace NovoBanco.Infraestrutura.Repository
 {
-    public abstract class Repository : IRepository
+    //public class Repository : IRepository
+    public class Repository<T> : IRepository<T> where T : Entidade
     {
         protected readonly AppDbContext _context;
 
@@ -17,24 +20,24 @@ namespace NovoBanco.Infraestrutura.Repository
             _context = context;
         }
 
-        public void Add<T>(T item) where T : class
+        public T BuscarPorId(int id)
         {
-            _context.Add(item);
+            return this._context.Set<T>().Find(id);
         }
 
-        public void Update<T>(T item) where T : class
+        public virtual async Task Inserir(T item)
         {
-            _context.Update(item);
+            await _context.Set<T>().AddAsync(item);
         }
 
-        public void Delete<T>(T item) where T : class
+        public IEnumerable<T> Listar()
         {
-            _context.Remove(item);
+            return this._context.Set<T>().ToList();
         }
 
-        public bool SaveChanges()
+        public void Persistir()
         {
-            return (_context.SaveChanges() > 0);
+            this._context.SaveChanges();
         }
     }
 }

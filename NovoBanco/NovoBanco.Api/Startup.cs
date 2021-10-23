@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NovoBanco.Aplicacao.GestaoDeBancos;
 using NovoBanco.Dominio.Repositories;
+using NovoBanco.Infraestrutura;
 using NovoBanco.Infraestrutura.Context;
 using NovoBanco.Infraestrutura.Repository;
 using System;
@@ -78,6 +80,8 @@ namespace NovoBanco.Api
 
                 options.IncludeXmlComments(xmlComentsFullPath);
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,12 +118,14 @@ namespace NovoBanco.Api
 
         private void RegistrarInjecaoRepositorios(IServiceCollection services)
         {
-            //services.AddScoped<IRepository, Repository>();
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IBancoRepository, BancoRepository>();
         }
 
         private void RegistrarInjecaoServicos(IServiceCollection services)
         {
-           
+            services.AddTransient<IServicoExternoDePersistencia, ServicoExternoDePersistencia>();
+            services.AddTransient<IServicoDeGestaoDeBancos, ServicoDeGestaoDeBancos>();
         }
     }
 }

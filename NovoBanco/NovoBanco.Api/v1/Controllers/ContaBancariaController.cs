@@ -20,7 +20,7 @@ namespace NovoBanco.Api.v1.Controllers
         }
 
         /// <summary>
-        /// /Método Responsável para retornar todas as contas
+        /// Método Responsável para retornar todas as contas
         /// </summary>
         /// <returns></returns>
         [HttpGet("BuscarContas")]

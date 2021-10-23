@@ -13,7 +13,7 @@ namespace NovoBanco.Dominio.Entidades
             this.Ativo = true;
         }
 
-        public ContaBancaria(int id, string nome, string documento, string agencia, string conta, Banco banco) : this()
+        public ContaBancaria(string nome, string documento, string agencia, string conta, Banco banco) : this()
         {
             if (banco == null)
                 throw new ExcecaoDeNegocio("Obrigatório informar um banco");
@@ -30,21 +30,15 @@ namespace NovoBanco.Dominio.Entidades
             if (string.IsNullOrEmpty(conta))
                 throw new ExcecaoDeNegocio("Obrigatório informar uma conta");
 
-            if (string.IsNullOrEmpty(documento))
-                this.Documento = Documento.Vazio;
-            else
-                this.Documento = new Documento(documento);
-
-            this.Id = id;
             Nome = nome;
             Agencia = agencia;
             Conta = conta;
             Banco = banco;
+            Documento = documento;
         }
 
         public string Nome { get; private set; }
-        [NotMapped]
-        public Documento Documento { get; private set; }
+        public string Documento { get; private set; }
         public string Agencia { get; private set; }
         public string Conta { get; private set; }
         public bool Ativo { get; private set; }
@@ -85,18 +79,9 @@ namespace NovoBanco.Dominio.Entidades
             if (string.IsNullOrEmpty(conta))
                 throw new ExcecaoDeNegocio("Obrigatório informar uma conta");
 
-            if (string.IsNullOrEmpty(documento))
-                this.Documento = Documento.Vazio;
-            else
-                this.Documento = new Documento(documento);
-
-            if (string.IsNullOrEmpty(documento))
-                this.Documento = Documento.Vazio;
-            else
-                this.Documento = new Documento(documento);
-
             this.Banco = banco;
             this.Nome = nome;
+            this.Documento = documento;
             this.Conta = conta;
             this.Agencia = agencia;
             this.Ativo = ativo;

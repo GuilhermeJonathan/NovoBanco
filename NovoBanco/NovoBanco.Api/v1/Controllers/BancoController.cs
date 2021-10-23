@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NovoBanco.Aplicacao.GestaoDeBancos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,11 @@ namespace NovoBanco.Api.v1.Controllers
     [ApiController]
     public class BancoController : ControllerBase
     {
-        public BancoController()
-        {
+        private readonly IServicoDeGestaoDeBancos _servicoDeGestaoDeBancos;
 
+        public BancoController(IServicoDeGestaoDeBancos servicoDeGestaoDeBancos)
+        {
+            this._servicoDeGestaoDeBancos = servicoDeGestaoDeBancos;
         }
 
         /// <summary>
@@ -26,7 +29,7 @@ namespace NovoBanco.Api.v1.Controllers
         [HttpGet("BuscarBancos")]
         public IActionResult Get()
         {
-            return Ok("Lista de Bancos");
+            return Ok(_servicoDeGestaoDeBancos.ListarTodosBancos());
         }
     }
 }

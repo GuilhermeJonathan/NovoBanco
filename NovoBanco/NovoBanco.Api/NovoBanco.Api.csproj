@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NovoBanco.Aplicacao\NovoBanco.Aplicacao.csproj" />
     <ProjectReference Include="..\NovoBanco.Infraestrutura\NovoBanco.Infraestrutura.csproj" />
   </ItemGroup>
 
