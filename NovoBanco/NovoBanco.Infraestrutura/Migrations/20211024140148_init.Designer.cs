@@ -10,8 +10,8 @@ using NovoBanco.Infraestrutura.Context;
 namespace NovoBanco.Infraestrutura.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211023200238_init2")]
-    partial class init2
+    [Migration("20211024140148_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,16 +43,6 @@ namespace NovoBanco.Infraestrutura.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BANCOS");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Ativo = true,
-                            Codigo = "00001",
-                            DataDoCadastro = new DateTime(2021, 10, 23, 17, 2, 37, 621, DateTimeKind.Local).AddTicks(57),
-                            Nome = "BANCO DO BRASIL"
-                        });
                 });
 
             modelBuilder.Entity("NovoBanco.Dominio.Entidades.ContaBancaria", b =>
@@ -68,17 +58,23 @@ namespace NovoBanco.Infraestrutura.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("BancoId")
+                    b.Property<int>("BancoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Conta")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DataAbertura")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DataDoCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DataUltimaAtualizacao")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Documento")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
@@ -90,19 +86,13 @@ namespace NovoBanco.Infraestrutura.Migrations
                     b.ToTable("CONTASBANCARIAS");
                 });
 
-            modelBuilder.Entity("NovoBanco.Dominio.ObjetosDeValor.Documento", b =>
-                {
-                    b.Property<string>("Numero")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("Documento");
-                });
-
             modelBuilder.Entity("NovoBanco.Dominio.Entidades.ContaBancaria", b =>
                 {
                     b.HasOne("NovoBanco.Dominio.Entidades.Banco", "Banco")
                         .WithMany()
-                        .HasForeignKey("BancoId");
+                        .HasForeignKey("BancoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Banco");
                 });

@@ -20,11 +20,122 @@
             ContaBancariaController
             </summary>
         </member>
-        <member name="M:NovoBanco.Api.v1.Controllers.ContaBancariaController.Get">
+        <member name="M:NovoBanco.Api.v1.Controllers.ContaBancariaController.BuscarContas">
             <summary>
             Método Responsável para retornar todas as contas
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:NovoBanco.Api.v1.Controllers.ContaBancariaController.CadastrarConta(NovoBanco.Api.v1.Dtos.ContaBancariaRegistroDto)">
+            <summary>
+            Método responsável para cadastrar uma Fruta
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NovoBanco.Api.v1.Controllers.ContaBancariaController.EditarConta(System.Nullable{System.Int32},NovoBanco.Api.v1.Dtos.ContaBancariaEdicaoDto)">
+            <summary>
+            Método responsável para editar uma Conta Bancária
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NovoBanco.Api.v1.Controllers.ContaBancariaController.AtivarDesativarConta(System.Nullable{System.Int32},NovoBanco.Api.v1.Dtos.ContaBancariaAtivacaoDto)">
+            <summary>
+            Método responsável para Ativar ou Desativar Conta Bancária
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NovoBanco.Api.v1.Controllers.ContaBancariaController.ExcluirConta(System.Nullable{System.Int32},NovoBanco.Api.v1.Dtos.ContaBancariaExclusaoDto)">
+            <summary>
+            Método responsável para excluir uma Conta Bancária
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaAtivacaoDto.Id">
+            <summary>
+            Id do Cliente {int}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaAtivacaoDto.Ativo">
+            <summary>
+            Ativar Cliente {int} 1: Ativo / 0: Inativo
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaDto.Id">
+            <summary>
+            Identificador da Fruta
+            </summary> 
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaEdicaoDto.Id">
+            <summary>
+            Id do Cliente {int}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaEdicaoDto.Nome">
+            <summary>
+            Nome do Cliente {string}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaEdicaoDto.Documento">
+            <summary>
+            CPF ou CNPJ do Cliente {string}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaEdicaoDto.Agencia">
+            <summary>
+            Agência do Cliente {string}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaEdicaoDto.Conta">
+            <summary>
+            Nome do Cliente {string}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaEdicaoDto.IdBanco">
+            <summary>
+            Id do Banco {int}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaExclusaoDto.Id">
+            <summary>
+            Id do Cliente {int}
+            </summary>
+        </member>
+        <member name="T:NovoBanco.Api.v1.Dtos.ContaBancariaRegistroDto">
+            <summary>
+            Registro de Conta Bancária
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaRegistroDto.Nome">
+            <summary>
+            Nome do Cliente {string}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaRegistroDto.Documento">
+            <summary>
+            CPF ou CNPJ do Cliente {string}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaRegistroDto.Agencia">
+            <summary>
+            Agência do Cliente {string}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaRegistroDto.Conta">
+            <summary>
+            Nome do Cliente {string}
+            </summary>
+        </member>
+        <member name="P:NovoBanco.Api.v1.Dtos.ContaBancariaRegistroDto.IdBanco">
+            <summary>
+            Id do Banco {int}
+            </summary>
         </member>
     </members>
 </doc>

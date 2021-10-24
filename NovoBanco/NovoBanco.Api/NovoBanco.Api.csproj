@@ -32,11 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="v1\Dtos\" />
-    <Folder Include="v1\Profiles\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\NovoBanco.Aplicacao\NovoBanco.Aplicacao.csproj" />
     <ProjectReference Include="..\NovoBanco.Infraestrutura\NovoBanco.Infraestrutura.csproj" />
   </ItemGroup>

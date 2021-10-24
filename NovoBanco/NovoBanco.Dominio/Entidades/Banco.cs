@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace NovoBanco.Dominio.Entidades
@@ -11,9 +13,8 @@ namespace NovoBanco.Dominio.Entidades
             this.Ativo = true;
         }
 
-        public Banco(int id, string codigo, string nome) : this()
+        public Banco(string codigo, string nome) : this()
         {
-            this.Id = id;
             Codigo = codigo;
             Nome = nome;
         }

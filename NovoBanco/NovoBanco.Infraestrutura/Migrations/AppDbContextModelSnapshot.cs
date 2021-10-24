@@ -41,16 +41,6 @@ namespace NovoBanco.Infraestrutura.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BANCOS");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Ativo = true,
-                            Codigo = "00001",
-                            DataDoCadastro = new DateTime(2021, 10, 23, 18, 13, 55, 881, DateTimeKind.Local).AddTicks(4733),
-                            Nome = "BANCO DO BRASIL"
-                        });
                 });
 
             modelBuilder.Entity("NovoBanco.Dominio.Entidades.ContaBancaria", b =>
@@ -66,11 +56,14 @@ namespace NovoBanco.Infraestrutura.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("BancoId")
+                    b.Property<int>("BancoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Conta")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DataAbertura")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DataDoCadastro")
                         .HasColumnType("datetime2");
@@ -91,19 +84,13 @@ namespace NovoBanco.Infraestrutura.Migrations
                     b.ToTable("CONTASBANCARIAS");
                 });
 
-            modelBuilder.Entity("NovoBanco.Dominio.ObjetosDeValor.Documento", b =>
-                {
-                    b.Property<string>("Numero")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("Documento");
-                });
-
             modelBuilder.Entity("NovoBanco.Dominio.Entidades.ContaBancaria", b =>
                 {
                     b.HasOne("NovoBanco.Dominio.Entidades.Banco", "Banco")
                         .WithMany()
-                        .HasForeignKey("BancoId");
+                        .HasForeignKey("BancoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Banco");
                 });

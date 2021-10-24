@@ -13,6 +13,16 @@ namespace NovoBanco.Infraestrutura.Repository
     {
         public BancoRepository(AppDbContext contexto) : base(contexto) { }
 
+        public Banco PegarPorId(int id)
+        {
+            IQueryable<Banco> query = _context.Bancos;
+
+            query = query.AsNoTracking()
+                .Where(b => b.Id == id);
+
+            return query.FirstOrDefault();
+        }
+
         public List<Banco> ListarTodosBancos()
         {
             IQueryable<Banco> query = _context.Bancos;

@@ -11,6 +11,7 @@ namespace NovoBanco.Dominio.Repositories
         T BuscarPorId(int id);
         IEnumerable<T> Listar();
         Task Inserir(T item);
+        void Deletar(T item);
         void Persistir();
     }
 }

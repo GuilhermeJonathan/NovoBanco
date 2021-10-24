@@ -5,9 +5,8 @@ using System.Text;
 
 namespace NovoBanco.Dominio.Repositories
 {
-    public interface IBancoRepository : IRepository<Banco>
+    public interface IContaBancariaRepository : IRepository<ContaBancaria>
     {
-        Banco PegarPorId(int id);
-        List<Banco> ListarTodosBancos();
+        List<ContaBancaria> ListarTodasContas();
     }
 }

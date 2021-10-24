@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NovoBanco.Infraestrutura.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,27 +24,19 @@ namespace NovoBanco.Infraestrutura.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Documento",
-                columns: table => new
-                {
-                    Numero = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CONTASBANCARIAS",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Documento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Agencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Conta = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    DataAbertura = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DataUltimaAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    BancoId = table.Column<int>(type: "int", nullable: true),
+                    BancoId = table.Column<int>(type: "int", nullable: false),
                     DataDoCadastro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -55,13 +47,8 @@ namespace NovoBanco.Infraestrutura.Migrations
                         column: x => x.BancoId,
                         principalTable: "BANCOS",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "BANCOS",
-                columns: new[] { "Id", "Ativo", "Codigo", "DataDoCadastro", "Nome" },
-                values: new object[] { 1, true, "00001", new DateTime(2021, 10, 23, 17, 1, 6, 200, DateTimeKind.Local).AddTicks(4734), "BANCO DO BRASIL" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CONTASBANCARIAS_BancoId",
@@ -73,9 +60,6 @@ namespace NovoBanco.Infraestrutura.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CONTASBANCARIAS");
-
-            migrationBuilder.DropTable(
-                name: "Documento");
 
             migrationBuilder.DropTable(
                 name: "BANCOS");

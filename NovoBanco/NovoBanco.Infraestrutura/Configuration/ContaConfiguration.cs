@@ -12,7 +12,6 @@ namespace NovoBanco.Infraestrutura.Configuration
         public void Configure(EntityTypeBuilder<ContaBancaria> builder)
         {
             builder.ToTable("CONTASBANCARIAS");
-            builder.HasKey(x => x.Id);
         }
     }
 }

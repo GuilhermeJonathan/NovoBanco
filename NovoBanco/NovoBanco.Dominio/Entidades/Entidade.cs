@@ -12,6 +12,7 @@ namespace NovoBanco.Dominio.Entidades
             this.DataDoCadastro = DateTime.Now;
         }
 
+        [Key]
         public int Id { get; protected set; }
         public DateTime DataDoCadastro { get; set; }
     }

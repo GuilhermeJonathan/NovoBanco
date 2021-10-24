@@ -30,6 +30,11 @@ namespace NovoBanco.Infraestrutura.Repository
             await _context.Set<T>().AddAsync(item);
         }
 
+        public void Deletar(T item)
+        {
+            _context.Remove(item);
+        }
+        
         public IEnumerable<T> Listar()
         {
             return this._context.Set<T>().ToList();

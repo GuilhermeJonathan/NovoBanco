@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NovoBanco.Aplicacao.GestaoDeBancos;
+using NovoBanco.Aplicacao.GestaoDeContas;
 using NovoBanco.Dominio.Repositories;
 using NovoBanco.Infraestrutura;
 using NovoBanco.Infraestrutura.Context;
@@ -80,8 +81,6 @@ namespace NovoBanco.Api
 
                 options.IncludeXmlComments(xmlComentsFullPath);
             });
-
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,11 +99,11 @@ namespace NovoBanco.Api
                 });
             }
 
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                dbContext.Database.Migrate();
-            }
+            //using (var scope = app.ApplicationServices.CreateScope())
+            //{
+            //    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            //    dbContext.Database.Migrate();
+            //}
 
             app.UseRouting();
 
@@ -120,12 +119,14 @@ namespace NovoBanco.Api
         {
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IBancoRepository, BancoRepository>();
+            services.AddTransient<IContaBancariaRepository, ContaBancariaRepository>();
         }
 
         private void RegistrarInjecaoServicos(IServiceCollection services)
         {
             services.AddTransient<IServicoExternoDePersistencia, ServicoExternoDePersistencia>();
             services.AddTransient<IServicoDeGestaoDeBancos, ServicoDeGestaoDeBancos>();
+            services.AddTransient<IServicoDeGestaoDeContas, ServicoDeGestaoDeContas>();
         }
     }
 }

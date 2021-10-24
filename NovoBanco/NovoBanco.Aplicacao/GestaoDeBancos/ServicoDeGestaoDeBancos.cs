@@ -10,6 +10,7 @@ namespace NovoBanco.Aplicacao.GestaoDeBancos
     public class ServicoDeGestaoDeBancos : IServicoDeGestaoDeBancos
     {
         private readonly IServicoExternoDePersistencia _servicoExternoDePersistencia;
+
         public ServicoDeGestaoDeBancos(IServicoExternoDePersistencia servicoExternoDePersistencia)
         {
             this._servicoExternoDePersistencia = servicoExternoDePersistencia;

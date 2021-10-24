@@ -1,6 +1,6 @@
-﻿using NovoBanco.Dominio.ObjetosDeValor;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -11,6 +11,7 @@ namespace NovoBanco.Dominio.Entidades
         public ContaBancaria()
         {
             this.Ativo = true;
+            this.DataAbertura = DateTime.Now;
         }
 
         public ContaBancaria(string nome, string documento, string agencia, string conta, Banco banco) : this()
@@ -33,7 +34,27 @@ namespace NovoBanco.Dominio.Entidades
             Nome = nome;
             Agencia = agencia;
             Conta = conta;
-            Banco = banco;
+            BancoId = banco.Id;
+            Documento = documento;
+        }
+
+        public ContaBancaria(string nome, string documento, string agencia, string conta) : this()
+        {
+            if (string.IsNullOrEmpty(nome))
+                throw new ExcecaoDeNegocio("Obrigatório informar um nome");
+
+            if (string.IsNullOrEmpty(documento))
+                throw new ExcecaoDeNegocio("Obrigatório informar um documento");
+
+            if (string.IsNullOrEmpty(agencia))
+                throw new ExcecaoDeNegocio("Obrigatório informar uma agência");
+
+            if (string.IsNullOrEmpty(conta))
+                throw new ExcecaoDeNegocio("Obrigatório informar uma conta");
+
+            Nome = nome;
+            Agencia = agencia;
+            Conta = conta;
             Documento = documento;
         }
 
@@ -42,8 +63,9 @@ namespace NovoBanco.Dominio.Entidades
         public string Agencia { get; private set; }
         public string Conta { get; private set; }
         public bool Ativo { get; private set; }
+        public DateTime? DataAbertura { get; private set; }
         public DateTime? DataUltimaAtualizacao { get; private set; }
-        [ForeignKey("BancoId")]
+        public int BancoId { get; set; }
         public Banco Banco { get; set; }
 
         public void Ativar()
@@ -61,9 +83,8 @@ namespace NovoBanco.Dominio.Entidades
             this.DataUltimaAtualizacao = DateTime.Now;
         }
 
-        public void AlterarDadosConta(Banco banco, string nome, string documento, string agencia, string conta, bool ativo)
+        public void AlterarDadosConta(Banco banco, string nome, string documento, string agencia, string conta)
         {
-            this.Nome = nome;
             if (banco == null)
                 throw new ExcecaoDeNegocio("Obrigatório informar um banco");
 
@@ -79,12 +100,11 @@ namespace NovoBanco.Dominio.Entidades
             if (string.IsNullOrEmpty(conta))
                 throw new ExcecaoDeNegocio("Obrigatório informar uma conta");
 
-            this.Banco = banco;
+            this.BancoId = banco.Id;
             this.Nome = nome;
             this.Documento = documento;
             this.Conta = conta;
             this.Agencia = agencia;
-            this.Ativo = ativo;
             this.Atualizar();
         }
     }

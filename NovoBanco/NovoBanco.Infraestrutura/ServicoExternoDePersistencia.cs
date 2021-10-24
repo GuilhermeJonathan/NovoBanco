@@ -24,6 +24,14 @@ namespace NovoBanco.Infraestrutura
             }
         }
 
+        public IContaBancariaRepository RepositorioDeContas
+        {
+            get
+            {
+                return new ContaBancariaRepository(this._contexto);
+            }
+        }
+
         public void Persistir()
         {
             this._contexto.SaveChanges();
