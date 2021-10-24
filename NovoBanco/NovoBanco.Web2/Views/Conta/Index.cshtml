@@ -1,0 +1,103 @@
+﻿@model NovoBanco.Aplicacao.Web.GestaoDeContas.Modelos.ModeloDeListaDeContasBancarias
+
+@{ViewData["Title"] = "Contas Bancárias"; }
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home" )">Home</a></li>
+                        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mb-2">
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" action="@Url.Action("Index", "Conta")" method="get">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-search"></i> Buscar Contas</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="Nome">Nome:</label>
+                                        <input type="text" value="@Model.Filtro.Nome" class="form-control" id="Filtro.Nome" name="Filtro.Nome">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action("Cadastrar", "Conta" )" class="btn btn-info"> Cadastrar Conta Bancária </a>
+                            <button type="submit" class="btn btn-primary float-right">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-table"></i> Lista de Contas Bancárias </h3>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        @if (Model.Lista.Count > 0)
+                        {
+                            <table class="table table-striped text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th width="20px">Código Banco</th>
+                                        <th>Conta</th>
+                                        <th>Agência</th>
+                                        <th>Nome</th>
+                                        <th>Situação</th>
+                                        <th width="30px"></th>
+                                        <th width="30px"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Lista)
+                                    {
+                                        <tr>
+                                            <td>@item.CodigoBanco</td>
+                                            <td>@item.Conta</td>
+                                            <td>@item.Agencia</td>
+                                            <td>@item.Nome</td>
+                                            <td>
+                                                <div class="custom-control custom-switch left">
+                                                    <input type="checkbox" class="custom-control-input btnAtivarConta" id="@item.Id" data-id="@item.Id" @(item.Ativo ? "checked" : "")>
+                                                    <label class="custom-control-label" for="@item.Id"> ATIVO</label>
+                                                </div>
+                                            </td>
+                                            <td> <a href="@Url.Action("Editar", "Conta", new { id = item.Id } )" class="btn btn-info"> Editar </a> </td>
+                                            <td> <a href="javascript:void(0);" class="btn btn-danger btnExcluirConta no-load float-right mr-1" data-id="@item.Id" title="Deseja excluir a conta?"> Excluir </a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                    <div class="card-footer">
+                        <span class="pagination pagination-sm m-0 float-left"> Total de Registros @Model.TotalDeRegistros </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_Confirmacao")
+
+@section scripts{
+    <script src="~/js/gestao-conta-bancaria.js"></script>
+}

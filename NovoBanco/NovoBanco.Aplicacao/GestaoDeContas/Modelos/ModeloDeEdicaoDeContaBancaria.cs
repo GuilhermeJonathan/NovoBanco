@@ -23,7 +23,7 @@ namespace NovoBanco.Aplicacao.GestaoDeContas.Modelos
         [Required]
         public string Conta { get; private set; }
         [Required]
-        public int IdBanco { get; set; }
+        public int BancoId { get; set; }
         public int Ativo { get; set; }
     }
 }

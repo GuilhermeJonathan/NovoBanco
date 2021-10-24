@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NovoBanco.Aplicacao.Web\NovoBanco.Aplicacao.Web.csproj" />
+    <ProjectReference Include="..\NovoBanco.ComunicacaoViaHttp\NovoBanco.ComunicacaoViaHttp.csproj" />
+  </ItemGroup>
+
+</Project>

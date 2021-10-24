@@ -1,0 +1,55 @@
+﻿@model NovoBanco.Aplicacao.Web.GestaoDeBancos.Modelos.ModeloDeListaDeBancos
+
+@{ViewData["Title"] = "Bancos"; }
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home" )">Home</a></li>
+                        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-table"></i> Lista de Bancos </h3>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        @if (Model.Lista.Count > 0)
+                        {
+                            <table class="table table-striped text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th width="20px">Id</th>
+                                        <th>Banco</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Lista)
+                                    {
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.Nome</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                    <div class="card-footer">
+                        <span class="pagination pagination-sm m-0 float-left"> Total de Registros @Model.TotalDeRegistros </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

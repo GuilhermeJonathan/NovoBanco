@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{3569F074-E6D0-4A4E-9526-89155BCEA119}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovoBanco.Api", "NovoBanco.Api\NovoBanco.Api.csproj", "{9579C191-A382-4303-BC90-C2D0D0D4136C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovoBanco.Web", "NovoBanco.Web\NovoBanco.Web.csproj", "{0BC6FEA5-8B1E-4CF9-9AD6-B8DCA65D8A70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovoBanco.Api", "NovoBanco.Api\NovoBanco.Api.csproj", "{9579C191-A382-4303-BC90-C2D0D0D4136C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestrutura", "Infraestrutura", "{77C9AB32-28CD-475B-BC16-3E2CF964E5C7}"
 EndProject
@@ -15,11 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{8FA5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplicacao", "Aplicacao", "{B4990606-8B90-4B11-A97F-7EE2ECABD12D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovoBanco.Dominio", "NovoBanco.Dominio\NovoBanco.Dominio.csproj", "{AF6505A9-13BD-4DC8-B9AE-90871C3F658C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovoBanco.Dominio", "NovoBanco.Dominio\NovoBanco.Dominio.csproj", "{AF6505A9-13BD-4DC8-B9AE-90871C3F658C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovoBanco.Infraestrutura", "NovoBanco.Infraestrutura\NovoBanco.Infraestrutura.csproj", "{2DB0C053-3A35-4F61-96E7-CA68A0E4652C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovoBanco.Infraestrutura", "NovoBanco.Infraestrutura\NovoBanco.Infraestrutura.csproj", "{2DB0C053-3A35-4F61-96E7-CA68A0E4652C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovoBanco.Aplicacao", "NovoBanco.Aplicacao\NovoBanco.Aplicacao.csproj", "{DCE6BB0A-8C6A-4E6E-80BD-97FF2556BFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovoBanco.Aplicacao", "NovoBanco.Aplicacao\NovoBanco.Aplicacao.csproj", "{DCE6BB0A-8C6A-4E6E-80BD-97FF2556BFCD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovoBanco.ComunicacaoViaHttp", "NovoBanco.ComunicacaoViaHttp\NovoBanco.ComunicacaoViaHttp.csproj", "{8E823B02-9647-4ADD-A7EA-5AB84C8F77B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovoBanco.Aplicacao.Web", "NovoBanco.Aplicacao.Web\NovoBanco.Aplicacao.Web.csproj", "{5016FCB9-5893-4DD9-9CF4-72A34E42AFA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovoBanco.Web", "NovoBanco.Web2\NovoBanco.Web.csproj", "{34B77DD9-3E33-4186-84D3-6F23A1817ECB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovoBanco.Aplicacao.Shared", "NovoBanco.Aplicacao.Shared\NovoBanco.Aplicacao.Shared.csproj", "{4ABC9C54-47B7-426B-BC35-F054805AD8B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +37,6 @@ Global
 		{9579C191-A382-4303-BC90-C2D0D0D4136C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9579C191-A382-4303-BC90-C2D0D0D4136C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9579C191-A382-4303-BC90-C2D0D0D4136C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BC6FEA5-8B1E-4CF9-9AD6-B8DCA65D8A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BC6FEA5-8B1E-4CF9-9AD6-B8DCA65D8A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BC6FEA5-8B1E-4CF9-9AD6-B8DCA65D8A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BC6FEA5-8B1E-4CF9-9AD6-B8DCA65D8A70}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF6505A9-13BD-4DC8-B9AE-90871C3F658C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF6505A9-13BD-4DC8-B9AE-90871C3F658C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF6505A9-13BD-4DC8-B9AE-90871C3F658C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,16 +49,35 @@ Global
 		{DCE6BB0A-8C6A-4E6E-80BD-97FF2556BFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE6BB0A-8C6A-4E6E-80BD-97FF2556BFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE6BB0A-8C6A-4E6E-80BD-97FF2556BFCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E823B02-9647-4ADD-A7EA-5AB84C8F77B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E823B02-9647-4ADD-A7EA-5AB84C8F77B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E823B02-9647-4ADD-A7EA-5AB84C8F77B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E823B02-9647-4ADD-A7EA-5AB84C8F77B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5016FCB9-5893-4DD9-9CF4-72A34E42AFA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5016FCB9-5893-4DD9-9CF4-72A34E42AFA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5016FCB9-5893-4DD9-9CF4-72A34E42AFA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5016FCB9-5893-4DD9-9CF4-72A34E42AFA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34B77DD9-3E33-4186-84D3-6F23A1817ECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34B77DD9-3E33-4186-84D3-6F23A1817ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34B77DD9-3E33-4186-84D3-6F23A1817ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34B77DD9-3E33-4186-84D3-6F23A1817ECB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ABC9C54-47B7-426B-BC35-F054805AD8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ABC9C54-47B7-426B-BC35-F054805AD8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ABC9C54-47B7-426B-BC35-F054805AD8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ABC9C54-47B7-426B-BC35-F054805AD8B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9579C191-A382-4303-BC90-C2D0D0D4136C} = {3569F074-E6D0-4A4E-9526-89155BCEA119}
-		{0BC6FEA5-8B1E-4CF9-9AD6-B8DCA65D8A70} = {3569F074-E6D0-4A4E-9526-89155BCEA119}
 		{AF6505A9-13BD-4DC8-B9AE-90871C3F658C} = {8FA5A603-74B0-4DC7-AF57-3241424ACDE2}
 		{2DB0C053-3A35-4F61-96E7-CA68A0E4652C} = {77C9AB32-28CD-475B-BC16-3E2CF964E5C7}
 		{DCE6BB0A-8C6A-4E6E-80BD-97FF2556BFCD} = {B4990606-8B90-4B11-A97F-7EE2ECABD12D}
+		{8E823B02-9647-4ADD-A7EA-5AB84C8F77B4} = {77C9AB32-28CD-475B-BC16-3E2CF964E5C7}
+		{5016FCB9-5893-4DD9-9CF4-72A34E42AFA5} = {B4990606-8B90-4B11-A97F-7EE2ECABD12D}
+		{34B77DD9-3E33-4186-84D3-6F23A1817ECB} = {3569F074-E6D0-4A4E-9526-89155BCEA119}
+		{4ABC9C54-47B7-426B-BC35-F054805AD8B4} = {B4990606-8B90-4B11-A97F-7EE2ECABD12D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C130832A-B33F-40F1-B845-A623836514D3}

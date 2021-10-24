@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using NovoBanco.Api.v1.Dtos;
+using NovoBanco.Aplicacao.GestaoDeBancos.Modelos;
 using NovoBanco.Aplicacao.GestaoDeContas.Modelos;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace NovoBanco.Api.v1.Profiles
             CreateMap<ModeloDeEdicaoDeContaBancaria, ContaBancariaEdicaoDto>().ReverseMap();
             CreateMap<ModeloDeEdicaoDeContaBancaria, ContaBancariaExclusaoDto>().ReverseMap();
             CreateMap<ModeloDeEdicaoDeContaBancaria, ContaBancariaAtivacaoDto>().ReverseMap();
+            
+            CreateMap<ModeloDeBancoDaLista, BancoDto>()
+                .ForMember(dest => dest.Nome, opts => opts.MapFrom(src => $"{src.Codigo} - {src.Nome}"))
+                .ReverseMap();
         }
     }
 }

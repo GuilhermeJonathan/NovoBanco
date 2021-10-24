@@ -1,0 +1,76 @@
+﻿@model NovoBanco.Aplicacao.Web.GestaoDeContas.Modelos.ModeloDeEdicaoDeContaBancaria
+
+@{ViewData["Title"] = "Editar Conta Bancárias"; }
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home" )">Home</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Conta" )">Contas Bancárias</a></li>
+                        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <form role="form" action="@Url.Action("Editar", "Conta")" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-table"></i> Editar Conta Bancária </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="Nome" class="control-label">Nome: </label>
+                                        <input asp-for="Nome" class="form-control" />
+                                        <span asp-validation-for="Nome" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="Documento" class="control-label">Documento: </label>
+                                        <input asp-for="Documento" class="form-control" />
+                                        <span asp-validation-for="Documento" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label asp-for="Agencia" class="control-label">Agência: </label>
+                                        <input asp-for="Agencia" class="form-control" />
+                                        <span asp-validation-for="Agencia" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label asp-for="Conta" class="control-label">Conta: </label>
+                                        <input asp-for="Conta" class="form-control" />
+                                        <span asp-validation-for="Conta" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class ="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="BancoId" class="control-label">Banco:</label>
+                                        <select asp-for="BancoId" class="form-control" asp-items="@Model.Bancos"></select>
+                                        <span asp-validation-for="BancoId" class="text-danger" />
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action("Index", "Conta")" class="btn btn-default float-left">Voltar</a>
+                            <button type="submit" class="btn btn-info float-right">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

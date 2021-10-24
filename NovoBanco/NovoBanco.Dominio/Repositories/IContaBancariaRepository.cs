@@ -8,5 +8,6 @@ namespace NovoBanco.Dominio.Repositories
     public interface IContaBancariaRepository : IRepository<ContaBancaria>
     {
         List<ContaBancaria> ListarTodasContas();
+        List<ContaBancaria> ListarContasPorFiltro(string nome);
     }
 }

@@ -34,12 +34,44 @@ namespace NovoBanco.Api.v1.Controllers
         [HttpGet("BuscarContas")]
         public IActionResult BuscarContas()
         {
-            var contas = this._servicoDeGestaoDeContas.ListarTodasContas();
-            
-            if(contas != null)
-                return Ok(_mapper.Map<IEnumerable<ContaBancariaDto>>(contas));
+            var resultado = this._servicoDeGestaoDeContas.ListarTodasContas();
 
-            return BadRequest("Contas não encontradas.");
+            if (resultado.Sucesso)
+                return Ok(_mapper.Map<IEnumerable<ContaBancariaDto>>(resultado.Dados));
+
+            return BadRequest(resultado.Mensagem);
+        }
+
+        /// <summary>
+        /// Método Responsável para retornar todas as contas
+        /// </summary>
+        /// /// <param name="nome"></param>
+        /// <returns></returns>
+        [HttpGet("BuscarPorNome/{nome}")]
+        public IActionResult BuscarPorNome(string nome)
+        {
+            var resultado = this._servicoDeGestaoDeContas.BuscarPorNome(nome);
+
+            if (resultado.Sucesso)
+                return Ok(_mapper.Map<IEnumerable<ContaBancariaDto>>(resultado.Dados));
+
+            return BadRequest(resultado.Mensagem);
+        }
+
+        /// <summary>
+        /// Método responsável por realizar busca de Conta Bancária por Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("BuscarPorId/{id}")]
+        public IActionResult BuscarPorId(int id)
+        {
+            var resultado = this._servicoDeGestaoDeContas.BuscarPorId(id);
+
+            if (resultado.Sucesso)
+                return Ok(_mapper.Map<ContaBancariaDto>(resultado.Dados));
+
+            return BadRequest(resultado.Mensagem);
         }
 
         /// <summary>
@@ -66,7 +98,7 @@ namespace NovoBanco.Api.v1.Controllers
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost("EditarConta/{id}")]
+        [HttpPut("EditarConta/{id}")]
         public IActionResult EditarConta(int? id, ContaBancariaEdicaoDto model)
         {
             if (id.HasValue)
@@ -106,15 +138,11 @@ namespace NovoBanco.Api.v1.Controllers
         /// Método responsável para excluir uma Conta Bancária
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPut("ExcluirConta/{id}")]
-        public IActionResult ExcluirConta(int? id, ContaBancariaExclusaoDto model)
+        [HttpDelete("ExcluirConta/{id}")]
+        public IActionResult ExcluirConta(int? id)
         {
-            if (id.HasValue)
-                model.Id = id.Value;
-
-            var modeloDeEdicao = _mapper.Map<ModeloDeEdicaoDeContaBancaria>(model);
+            var modeloDeEdicao = _mapper.Map<ModeloDeEdicaoDeContaBancaria>(new ContaBancariaExclusaoDto() { Id = id.Value});
             var resultado = this._servicoDeGestaoDeContas.ExcluirConta(modeloDeEdicao);
 
             if (resultado.Sucesso)

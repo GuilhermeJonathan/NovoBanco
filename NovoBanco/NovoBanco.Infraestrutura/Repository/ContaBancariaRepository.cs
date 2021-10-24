@@ -20,5 +20,12 @@ namespace NovoBanco.Infraestrutura.Repository
             query = query.AsNoTracking().OrderBy(a => a.Nome);
             return query.ToList();
         }
+
+        public List<ContaBancaria> ListarContasPorFiltro(string nome)
+        {
+            IQueryable<ContaBancaria> query = _context.ContasBancarias.Include(a => a.Banco);
+            query = query.AsNoTracking().Where(a => a.Nome.Contains(nome)).OrderBy(a => a.Nome);
+            return query.ToList();
+        }
     }
 }

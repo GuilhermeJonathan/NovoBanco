@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NovoBanco.Aplicacao.Shared\NovoBanco.Aplicacao.Shared.csproj" />
     <ProjectReference Include="..\NovoBanco.Infraestrutura\NovoBanco.Infraestrutura.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 ﻿using NovoBanco.Aplicacao.GestaoDeBancos.Modelos;
+using NovoBanco.Aplicacao.Shared;
 using NovoBanco.Infraestrutura;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,23 @@ namespace NovoBanco.Aplicacao.GestaoDeBancos
             this._servicoExternoDePersistencia = servicoExternoDePersistencia;
         }
 
-        public IList<ModeloDeBancoDaLista> ListarTodosBancos()
+        public BaseModel<List<ModeloDeBancoDaLista>> ListarTodosBancos()
         {
-            var bancos = this._servicoExternoDePersistencia.RepositorioDeBancos.ListarTodosBancos();
-            var modelo = new List<ModeloDeBancoDaLista>();
+            try
+            {
+                var bancos = this._servicoExternoDePersistencia.RepositorioDeBancos.ListarTodosBancos();
+                var modelo = new List<ModeloDeBancoDaLista>();
 
-            bancos.ToList().ForEach(a => modelo.Add(new ModeloDeBancoDaLista(a)));
-            return modelo;
+                bancos.ToList().ForEach(a => modelo.Add(new ModeloDeBancoDaLista(a)));
+                if (bancos == null)
+                    return new BaseModel<List<ModeloDeBancoDaLista>>(sucesso: false, mensagem: EnumMensagens.DadosNaoEncontrados);
+
+                return new BaseModel<List<ModeloDeBancoDaLista>>(sucesso: true, mensagem: EnumMensagens.RealizadaComSucesso, dados: modelo);
+            }
+            catch (Exception ex)
+            {
+                return new BaseModel<List<ModeloDeBancoDaLista>>(sucesso: false, mensagem: EnumMensagens.ErroInterno);
+            }
         }
     }
 }

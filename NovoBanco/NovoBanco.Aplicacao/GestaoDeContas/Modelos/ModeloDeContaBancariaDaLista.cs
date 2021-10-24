@@ -25,6 +25,8 @@ namespace NovoBanco.Aplicacao.GestaoDeContas.Modelos
             this.NomeBanco = conta.Banco != null ? conta.Banco.Nome : String.Empty;
             this.CodigoBanco = conta.Banco != null ? conta.Banco.Codigo : String.Empty;
             this.Situacao = conta.Ativo ? "Ativo" : "Inativo";
+            this.BancoId = conta.BancoId;
+            this.Documento = conta.Documento;
         }
 
         public int Id { get; set; }
@@ -35,5 +37,7 @@ namespace NovoBanco.Aplicacao.GestaoDeContas.Modelos
         public string Conta { get; set; }
         public string DataAbertura { get; set; }
         public string Situacao { get; set; }
+        public string Documento { get; set; }
+        public int BancoId { get; set; }
     }
 }

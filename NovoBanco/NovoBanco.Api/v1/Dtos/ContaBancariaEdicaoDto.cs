@@ -39,6 +39,6 @@ namespace NovoBanco.Api.v1.Dtos
         /// Id do Banco {int}
         /// </summary>
         [Required]
-        public int IdBanco { get; set; }
+        public int BancoId { get; set; }
     }
 }

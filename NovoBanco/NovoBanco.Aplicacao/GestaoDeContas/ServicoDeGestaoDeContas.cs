@@ -1,7 +1,6 @@
 ﻿using NovoBanco.Aplicacao.GestaoDeContas.Modelos;
-using NovoBanco.Aplicacao.Util;
+using NovoBanco.Aplicacao.Shared;
 using NovoBanco.Dominio.Entidades;
-using NovoBanco.Dominio.ObjetosDeValor;
 using NovoBanco.Infraestrutura;
 using System;
 using System.Collections.Generic;
@@ -20,13 +19,59 @@ namespace NovoBanco.Aplicacao.GestaoDeContas
             this._servicoExternoDePersistencia = servicoExternoDePersistencia;
         }
 
-        public IList<ModeloDeContaBancariaDaLista> ListarTodasContas()
+        public BaseModel<List<ModeloDeContaBancariaDaLista>> ListarTodasContas()
         {
-            var contas = this._servicoExternoDePersistencia.RepositorioDeContas.ListarTodasContas();
-            var modelo = new List<ModeloDeContaBancariaDaLista>();
+            try
+            {
+                var contas = this._servicoExternoDePersistencia.RepositorioDeContas.ListarTodasContas();
+                var modelo = new List<ModeloDeContaBancariaDaLista>();
 
-            contas.ToList().ForEach(a => modelo.Add(new ModeloDeContaBancariaDaLista(a)));
-            return modelo;
+                contas.ToList().ForEach(a => modelo.Add(new ModeloDeContaBancariaDaLista(a)));
+                if (contas == null)
+                    return new BaseModel<List<ModeloDeContaBancariaDaLista>>(sucesso: false, mensagem: EnumMensagens.DadosNaoEncontrados);
+
+                return new BaseModel<List<ModeloDeContaBancariaDaLista>>(sucesso: true, mensagem: EnumMensagens.RealizadaComSucesso, dados: modelo);
+            }
+            catch (Exception ex)
+            {
+                return new BaseModel<List<ModeloDeContaBancariaDaLista>>(sucesso: false, mensagem: EnumMensagens.ErroInterno);
+            }
+        }
+
+        public BaseModel<List<ModeloDeContaBancariaDaLista>> BuscarPorNome(string nome)
+        {
+            try
+            {
+                var modelo = new List<ModeloDeContaBancariaDaLista>();
+                var contas = this._servicoExternoDePersistencia.RepositorioDeContas.ListarContasPorFiltro(nome);
+                contas.ToList().ForEach(a => modelo.Add(new ModeloDeContaBancariaDaLista(a)));
+
+                if (contas == null)
+                    return new BaseModel<List<ModeloDeContaBancariaDaLista>>(sucesso: false, mensagem: EnumMensagens.DadosNaoEncontrados);
+
+                return new BaseModel<List<ModeloDeContaBancariaDaLista>>(sucesso: true, mensagem: EnumMensagens.RealizadaComSucesso, dados: modelo);
+            }
+            catch (Exception ex)
+            {
+                return new BaseModel<List<ModeloDeContaBancariaDaLista>>(sucesso: false, mensagem: EnumMensagens.ErroInterno);
+            }
+        }
+
+        public BaseModel<ModeloDeContaBancariaDaLista> BuscarPorId(int id)
+        {
+            try
+            {
+                var conta = this._servicoExternoDePersistencia.RepositorioDeContas.BuscarPorId(id);
+
+                if (conta == null)
+                    return new BaseModel<ModeloDeContaBancariaDaLista>(sucesso: false, mensagem: EnumMensagens.DadosNaoEncontrados);
+
+                return new BaseModel<ModeloDeContaBancariaDaLista>(sucesso: true, mensagem: EnumMensagens.RealizadaComSucesso, dados: new ModeloDeContaBancariaDaLista(conta));
+            }
+            catch (Exception ex)
+            {
+                return new BaseModel<ModeloDeContaBancariaDaLista>(sucesso: false, mensagem: EnumMensagens.ErroInterno);
+            }
         }
 
         public async Task<BaseModel<ModeloDeContaBancariaDaLista>> CadastrarConta(ModeloDeCadastroDeContaBancaria modelo)
@@ -37,7 +82,7 @@ namespace NovoBanco.Aplicacao.GestaoDeContas
                 if (resultadoValidacao.Any())
                     return new BaseModel<ModeloDeContaBancariaDaLista>(sucesso: false, mensagem: EnumMensagens.DadosInvalidos, dados: null, resultadoValidacao: resultadoValidacao.ToArray());
 
-                var banco = this._servicoExternoDePersistencia.RepositorioDeBancos.PegarPorId(modelo.IdBanco);
+                var banco = this._servicoExternoDePersistencia.RepositorioDeBancos.PegarPorId(modelo.BancoId);
                 var novaConta = new ContaBancaria(modelo.Nome, modelo.Documento, modelo.Agencia, modelo.Conta, banco);
                         
                 await this._servicoExternoDePersistencia.RepositorioDeContas.Inserir(novaConta);
@@ -47,7 +92,7 @@ namespace NovoBanco.Aplicacao.GestaoDeContas
             {
                 return new BaseModel<ModeloDeContaBancariaDaLista>(sucesso: false, mensagem: EnumMensagens.ErroInterno);
             }
-        }
+        }     
 
         public BaseModel<ModeloDeContaBancariaDaLista> EditarConta(ModeloDeEdicaoDeContaBancaria modelo)
         {
@@ -57,7 +102,7 @@ namespace NovoBanco.Aplicacao.GestaoDeContas
                 if (resultadoValidacao.Any())
                     return new BaseModel<ModeloDeContaBancariaDaLista>(sucesso: false, mensagem: EnumMensagens.DadosInvalidos, dados: null, resultadoValidacao: resultadoValidacao.ToArray());
 
-                var banco = this._servicoExternoDePersistencia.RepositorioDeBancos.PegarPorId(modelo.IdBanco);
+                var banco = this._servicoExternoDePersistencia.RepositorioDeBancos.PegarPorId(modelo.BancoId);
                 var conta = this._servicoExternoDePersistencia.RepositorioDeContas.BuscarPorId(modelo.Id);
 
                 if(conta == null)
