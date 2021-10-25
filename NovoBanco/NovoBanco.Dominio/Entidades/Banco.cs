@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NovoBanco.Dominio.Construtores;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,14 @@ namespace NovoBanco.Dominio.Entidades
             Nome = nome;
         }
 
+        public Banco(int id, string codigo, string nome) : this()
+        {
+            Id = id;
+            Codigo = codigo;
+            Nome = nome;
+        }
+
+        public static ConstrutorDeBanco Construir => new ConstrutorDeBanco();
         public string Codigo { get; private set; }
         public string Nome { get; private set; }
         public bool Ativo { get; private set; }

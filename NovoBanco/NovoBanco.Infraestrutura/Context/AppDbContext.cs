@@ -22,15 +22,19 @@ namespace NovoBanco.Infraestrutura.Context
             builder.ApplyConfiguration(new ContaConfiguration());
             builder.ApplyConfiguration(new BancoConfiguration());
 
-            //builder.Entity<ContaBancaria>()
-            //   .HasData(new List<ContaBancaria>(){
-            //        new ContaBancaria(1,"Teste Nome", "02025032161", "1010", "2020", new Banco(1,"070", "BRB - BANCO DE BRASILIA"))
-            //   });
-
-            //builder.Entity<Banco>()
-            //   .HasData(new List<Banco>(){
-            //        new Banco("00001", "BANCO DO BRASIL"),
-            //   });
+            builder.Entity<Banco>()
+               .HasData(new List<Banco>(){
+                   new Banco(1, "001", "BANCO DO BRASIL"),
+                   new Banco(2, "070", "BRB"),
+                   new Banco(3, "104", "CAIXA ECONÔMICA FEDERAL"),
+                   new Banco(4, "429", "BANCO INTER"),
+                   new Banco(6, "237", "BRADESCO"),
+                   new Banco(7, "008", "SANTANDER"),
+                   new Banco(8, "756", "SICOOB"),
+                   new Banco(9, "048", "ITAU"),
+                   new Banco(10, "422", "SAFRA"),
+                   new Banco(11, "477", "CITIBANK")
+               });
         }
     }
 }

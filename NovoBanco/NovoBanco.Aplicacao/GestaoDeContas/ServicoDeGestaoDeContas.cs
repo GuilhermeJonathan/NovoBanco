@@ -83,7 +83,7 @@ namespace NovoBanco.Aplicacao.GestaoDeContas
                     return new BaseModel<ModeloDeContaBancariaDaLista>(sucesso: false, mensagem: EnumMensagens.DadosInvalidos, dados: null, resultadoValidacao: resultadoValidacao.ToArray());
 
                 var banco = this._servicoExternoDePersistencia.RepositorioDeBancos.PegarPorId(modelo.BancoId);
-                var novaConta = new ContaBancaria(modelo.Nome, modelo.Documento, modelo.Agencia, modelo.Conta, banco);
+                var novaConta = new ContaBancaria(modelo.Nome, modelo.Documento, modelo.Agencia, modelo.Conta, banco.Id);
                         
                 await this._servicoExternoDePersistencia.RepositorioDeContas.Inserir(novaConta);
                 this._servicoExternoDePersistencia.Persistir();

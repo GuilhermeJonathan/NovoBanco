@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NovoBanco.Dominio.Construtores;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,11 +15,8 @@ namespace NovoBanco.Dominio.Entidades
             this.DataAbertura = DateTime.Now;
         }
 
-        public ContaBancaria(string nome, string documento, string agencia, string conta, Banco banco) : this()
+        public ContaBancaria(string nome, string documento, string agencia, string conta, int bancoId) : this()
         {
-            if (banco == null)
-                throw new ExcecaoDeNegocio("Obrigatório informar um banco");
-
             if (string.IsNullOrEmpty(nome))
                 throw new ExcecaoDeNegocio("Obrigatório informar um nome");
 
@@ -34,10 +32,11 @@ namespace NovoBanco.Dominio.Entidades
             Nome = nome;
             Agencia = agencia;
             Conta = conta;
-            BancoId = banco.Id;
+            BancoId = bancoId;
             Documento = documento;
         }
 
+        public static ConstrutorDeContaBancaria Construir => new ConstrutorDeContaBancaria();
         public string Nome { get; private set; }
         public string Documento { get; private set; }
         public string Agencia { get; private set; }
