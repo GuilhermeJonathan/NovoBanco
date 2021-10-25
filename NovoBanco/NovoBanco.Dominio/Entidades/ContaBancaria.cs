@@ -38,26 +38,6 @@ namespace NovoBanco.Dominio.Entidades
             Documento = documento;
         }
 
-        public ContaBancaria(string nome, string documento, string agencia, string conta) : this()
-        {
-            if (string.IsNullOrEmpty(nome))
-                throw new ExcecaoDeNegocio("Obrigatório informar um nome");
-
-            if (string.IsNullOrEmpty(documento))
-                throw new ExcecaoDeNegocio("Obrigatório informar um documento");
-
-            if (string.IsNullOrEmpty(agencia))
-                throw new ExcecaoDeNegocio("Obrigatório informar uma agência");
-
-            if (string.IsNullOrEmpty(conta))
-                throw new ExcecaoDeNegocio("Obrigatório informar uma conta");
-
-            Nome = nome;
-            Agencia = agencia;
-            Conta = conta;
-            Documento = documento;
-        }
-
         public string Nome { get; private set; }
         public string Documento { get; private set; }
         public string Agencia { get; private set; }

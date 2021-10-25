@@ -48,6 +48,12 @@ namespace NovoBanco.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Editar(ModeloDeEdicaoDeContaBancaria modelo)
         {
+            if (!ModelState.IsValid)
+            {
+                MensagemDeErro = "Campos não informados.";
+                return View(modelo);
+            }
+
             var retorno = await _servicoDeGestaoDeContas.SalvarConta(modelo);
 
             if (retorno != null)
@@ -70,6 +76,12 @@ namespace NovoBanco.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastrar(ModeloDeCadastroDeContaBancaria modelo)
         {
+            if (!ModelState.IsValid)
+            {
+                MensagemDeErro = "Campos não informados.";
+                return View(modelo);
+            }
+
             var retorno = await _servicoDeGestaoDeContas.CadastrarConta(modelo);
 
             if (retorno == null)
